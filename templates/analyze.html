@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment Analysis of YouTube Comments</h1>
+        <form method="post" action="/analyze">
+            <label for="youtube_link">Enter YouTube Link:</label>
+            <input type="text" id="youtube_link" name="youtube_link" required>
+            <button type="submit">Analyze</button>
+        </form>
+        <div id="chart-container">
+            <!-- Plotly chart will be embedded here -->
+        </div>
+    </div>
+
+    <!-- Plotly JavaScript -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        // Use Plotly to embed the chart in the 'chart-container' div
+        var chartData = JSON.parse('{{ chart_data | tojson | safe }}');
+        Plotly.newPlot('chart-container', chartData.data, chartData.layout);
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 50vh; /* Set width to half of the viewport height to make it a square */
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #212121;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #ff0000;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            border: 2px solid #ff0000;
+            border-radius: 4px;
+            color: #ff0000;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background: #ff0000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .loader-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 700px;
+            height: 700px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Comments Sentiment Analysis Visualization</h1>
+        <form action="/analyze" method="post">
+            <label for="youtube_link">Enter YouTube Video Link:</label>
+            <input type="text" id="youtube_link" name="youtube_link" required>
+            <button type="submit" id="analyze-btn">Analyze Comments</button>
+        </form>
+    </div>
+    <div class="loader-container" id="loading-spinner" style="display:none;">
+        <div class="loader"></div>
+    </div>
+    <script>
+        document.getElementById('analyze-btn').addEventListener('click', function() {
+            document.getElementById('loading-spinner').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
